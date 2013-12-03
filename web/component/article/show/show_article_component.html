@@ -1,0 +1,14 @@
+<div>
+  <div ng-if="ctrl.article != null">
+    <a class="extra-space" href="#/articles/{{ctrl.article.id}}/edit">
+      <input type="button" value="Edit Article">
+    </a>
+    
+    <a class="extra-space" href="#/index">
+      <input type="button" value="Back To Articles">
+    </a>
+    
+    <h1><strong>{{ctrl.article.title}}</strong></h1>
+    <p>{{ctrl.article.content}}</p>
+  </div>
+</div>

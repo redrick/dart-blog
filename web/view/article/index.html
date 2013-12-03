@@ -1,0 +1,20 @@
+<div ng-if="!ctrl.articlesLoaded">
+  {{ctrl.message}}
+</div>   
+<div ng-if="ctrl.articlesLoaded">
+      
+    <div id="article-list">
+      <div ng-repeat="article in ctrl.allArticles">
+        <p>
+          <h2>
+            <a class="extra-space" href="#/articles/{{article.id}}/show">
+              <strong>{{article.title}}</strong>
+            </a>
+          </h2>
+        </p>
+        <p>Author: {{article.author}}</p>
+        <p>{{article.content}}</p>
+      </div>
+    </div>
+      
+</div>
