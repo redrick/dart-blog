@@ -25,3 +25,12 @@ h1, p {
   text-align: center;
   margin-top: 140px;
 }
+
+body {
+  width: 50%;
+  padding-left: 25%;
+}
+
+body h1 {
+  text-align: center;
+}

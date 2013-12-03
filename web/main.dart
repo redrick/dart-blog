@@ -10,8 +10,6 @@ import 'package:perf_api/perf_api.dart';
 
 part 'service/query_service.dart';
 part 'model/article.dart';
-//part 'controller/dart_blog.dart';
-//part 'controller/show_article_controller.dart';
 part 'controller/articles_controller.dart';
 part 'routing/dart_blog_router.dart';
 part 'component/article/show/show_article_component.dart';
@@ -21,6 +19,7 @@ class MyAppModule extends Module {
   MyAppModule() {
     type(IndexArticleController);
     type(ShowArticleController);
+    type(EditArticleController);
 //    type(RatingComponent);
     type(QueryService);
     type(ShowArticleComponent);

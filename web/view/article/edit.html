@@ -1,0 +1,21 @@
+<div article-edit>
+  <div ng-if="!ctrl.articleLoaded">
+    {{ctrl.message}}
+  </div>
+   
+  <div ng-if="ctrl.articleLoaded">     
+    <div id="article-list"> 
+      <div ng-repeat="error in errors.name">{{error}}</div>
+      
+      <form name="form" class="simple-form" ng-submit="save()" novalidate>
+        Name:    <input type="text" ng-model="ctrl.article.title"><br/>
+        Author:    <input type="text" ng-model="ctrl.article.author"><br/>
+        Content: <textarea ng-model="ctrl.article.content" style="width:500px;height:100px;"></textarea><br/>
+        <a href="#/articles/{{ctrl.article.id}}/show">Back</a>
+        <input class="btn btn-primary" type="submit" value="SAVE!"/>
+      </form>
+    
+    </div>
+  </div>
+  
+</div>
