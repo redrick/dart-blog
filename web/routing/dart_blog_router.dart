@@ -14,6 +14,11 @@ class DartBlogRouteInitializer implements RouteInitializer {
         name: 'index',
         path: '/index',
         enter: view('view/article/index.html'))
+      
+      ..addRoute(
+        name: 'new',
+        path: '/articles/new',
+        enter: view('view/article/new.html'))
         
       ..addRoute(
         name: 'articles',
@@ -27,6 +32,11 @@ class DartBlogRouteInitializer implements RouteInitializer {
             name: 'edit',
             path: '/edit',
             enter: view('view/article/edit.html'))
+          ..addRoute(
+            name: 'update',
+            path: '/update',
+            enter: (_) =>
+                router.go('show', {}, replace:false))
     );
   }
 }

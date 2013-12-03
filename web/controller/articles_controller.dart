@@ -113,3 +113,12 @@ class EditArticleController {
       });
   }
 }
+
+@NgController(
+    selector: '[article-new]',
+    publishAs: 'ctrl')
+class NewArticleController {
+
+  NewArticleController() {}
+
+}
