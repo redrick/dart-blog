@@ -1,4 +1,31 @@
-<div id="article-list">
-  <show-article article-map="ctrl.articleMap">
-  </show-article>
+<div article-show>
+  <div ng-if="!ctrl.articleLoaded">
+    {{ctrl.message}}
+  </div>
+   
+  <div ng-if="ctrl.articleLoaded">     
+    <div id="article-list">
+      <p>
+        <a class="extra-space" href="#/articles/{{ctrl.article.id}}/edit">
+          <input type="button" value="Edit Article">
+        </a>
+    
+        <a class="extra-space" href="#/index">
+          <input type="button" value="Back To Articles">
+        </a>
+      </p>
+      
+      <p>
+        <h2>
+          <strong>{{ctrl.article.title}}</strong>
+        </h2>
+      </p>
+      <p>
+        <strong>Author: {{ctrl.article.author}}</strong>
+      </p>
+      <p>{{ctrl.article.content}}</p>
+    
+    </div>
+  </div>
+  
 </div>

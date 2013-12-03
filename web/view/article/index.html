@@ -1,7 +1,8 @@
-<div ng-if="!ctrl.articlesLoaded">
-  {{ctrl.message}}
-</div>   
-<div ng-if="ctrl.articlesLoaded">
+<div article-index>
+  <div ng-if="!ctrl.articlesLoaded">
+    {{ctrl.message}}
+  </div>   
+  <div ng-if="ctrl.articlesLoaded">
       
     <div id="article-list">
       <div ng-repeat="article in ctrl.allArticles">
@@ -17,4 +18,6 @@
       </div>
     </div>
       
+  </div>
+  
 </div>

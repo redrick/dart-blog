@@ -24,8 +24,8 @@ class QueryService {
       });
   }
 
-  Future<Article> getArticleById(String id) {
-    if (_artcilesCache == null) {
+  Future<Article> getArticleById(int id) {
+    if (_articlesCache == null) {
       return _loaded.then((_) {
         return _articlesCache[id];
       });
