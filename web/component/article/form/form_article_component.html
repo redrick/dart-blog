@@ -1,7 +1,7 @@
-<form name="form" action="#/articles/{{ctrl.article.id}}" class="simple-form" novalidate method="post">
+<form onsubmit="return false;" novalidate>
   Name:    <input type="text" ng-model="ctrl.article.title"><br/>
   Author:  <input type="text" ng-model="ctrl.article.author"><br/>
   Content: <textarea ng-model="ctrl.article.content" style="width:500px;height:100px;"></textarea><br/>
   <a href="#/articles/{{ctrl.article.id}}/show">Back</a>
-  <input class="btn btn-primary" type="submit" value="Save changes"/>
+  <input class="btn-primary" type="submit" ng-click="ctrl.create()" value="Save">
 </form>

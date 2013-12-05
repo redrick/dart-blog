@@ -118,7 +118,10 @@ class EditArticleController {
     selector: '[article-new]',
     publishAs: 'ctrl')
 class NewArticleController {
-
-  NewArticleController() {}
+  Article article;
+  
+  NewArticleController() {
+     article = new Article(0, '','','');
+  }
 
 }

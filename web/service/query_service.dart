@@ -43,35 +43,28 @@ class QueryService {
   }
 }
 
-class UpdateService {
+class CreateService {
   String _articlesUpdateUrl = 'http://test.antasandrej.net/articles.json';
+  Article article;
 
   Future _updated;
 
   Http _http;
 
-  UpdateService(Http this._http) {
+  CreateService(Http this._http) {
+    article = _article.toJsonString();
     _updated = Future.wait([_updateArticle()]);
   }
 
   Future _updateArticle() {
-    return _http.post(_articlesUpdateUrl)
+    return _http.post(_articlesUpdateUrl, data)
       .then((HttpResponse response) {
-        _articlesCache = new Map();
         for (Map article in response.data) {
-          Article a = new Article.fromJsonMap(article);
-          _articlesCache[a.id] = a;
+          print("Article: "+article);
+//          Article a = new Article.fromJsonMap(article);
+//          _articlesCache[a.id] = a;
         }
       });
-  }
-
-  Future<Article> getArticleById(int id) {
-    if (_articlesCache == null) {
-      return _loaded.then((_) {
-        return _articlesCache[id];
-      });
-    }
-    return new Future.value(_articlesCache[id]);
   }
 
 }

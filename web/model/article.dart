@@ -10,11 +10,13 @@ class Article {
 
   String toJsonString() {
     Map data = {
-                "id" : id,
-                "author" : author,
-                "title" : title,
-                "content" : content
-    };
+                "article": {
+                  "id" : id,
+                  "author" : author,
+                  "title" : title,
+                  "content" : content
+                  }
+                };
     return JSON.encode(data);
   }
 

@@ -32,11 +32,6 @@ class DartBlogRouteInitializer implements RouteInitializer {
             name: 'edit',
             path: '/edit',
             enter: view('view/article/edit.html'))
-          ..addRoute(
-            name: 'update',
-            path: '/update',
-            enter: (_) =>
-                router.go('show', {}, replace:false))
     );
   }
 }

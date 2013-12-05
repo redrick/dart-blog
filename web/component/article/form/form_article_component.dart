@@ -16,5 +16,9 @@ class FormArticleComponent {
     return articleRow;
   }
 
+  create(){
+    print('safsfas');
+  }
+  
   FormArticleComponent(RouteProvider routeProvider) {}
 }
