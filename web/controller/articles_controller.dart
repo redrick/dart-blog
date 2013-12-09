@@ -61,7 +61,7 @@ class ShowArticleController {
   String message = LOADING_MESSAGE;
   bool articleLoaded = false;
 
-  Article _article = new Article(0, '','','');
+  Article _article = new Article(0, '','','', new List());
   get article => _article;
 
   ShowArticleController(Http this._http, QueryService this._queryService, RouteProvider routeProvider) {
@@ -100,7 +100,7 @@ class EditArticleController {
   String message = LOADING_MESSAGE;
   bool articleLoaded = false;
 
-  Article _article = new Article(0, '','','');
+  Article _article = new Article(0, '','','', new List());
   get article => _article;
 
   EditArticleController(Http this._http, QueryService this._queryService, RouteProvider routeProvider) {
@@ -128,7 +128,7 @@ class NewArticleController {
   Article article;
   
   NewArticleController() {
-     article = new Article(0, '','','');
+     article = new Article(0, '','','', new List());
   }
   
 }

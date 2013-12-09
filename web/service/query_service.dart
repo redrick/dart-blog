@@ -3,8 +3,10 @@ part of dart_blog;
 class QueryService {
   String _articlesUrl = 'http://test.antasandrej.net/articles.json';
   String _articleUrl = 'http://test.antasandrej.net/articles/';
+  String _commentsUrl = 'http://test.antasandrej.net/comments.json';
   
-  Article _articleResult = new Article(0, '', '', '');
+  Article _articleResult = new Article(0, '', '', '', new List());
+  Comment _commentResult = new Comment(0,'','',0);
   
   int _pageNumber = 1;
 
@@ -36,7 +38,6 @@ class QueryService {
            _articleResult = new Article.fromJsonMap(articleMap);
            return _articleResult;
         });
-//    return new Future.value(_articleResult);
   }
 
   Future<Map<String, Article>> getAllArticles(int pageNumber) {
@@ -50,7 +51,6 @@ class QueryService {
             }
             return _articlesCache;
           });
-//    return new Future.value(_articlesCache);
   }
   
   Future<Article> createArticle(String data) {
@@ -60,7 +60,6 @@ class QueryService {
         _articleResult = new Article.fromJsonMap(articleMap);
         return _articleResult;
       });
-//    return new Future.value(_articleResult);
   }
   
   Future<Article> updateArticle(int id, String data) {
@@ -69,4 +68,12 @@ class QueryService {
     }
     return new Future.value(this.getArticleById(id));
   }
+  
+  Future<Article> createComment(int id, String data) {
+    if (_http.post(_commentsUrl, data) != null) {
+      return this.getArticleById(id);
+    }
+    return new Future.value(this.getArticleById(id));
+  }
+  
 }

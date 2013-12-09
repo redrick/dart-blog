@@ -24,7 +24,18 @@
         <strong>Author: {{ctrl.article.author}}</strong>
       </p>
       <p>{{ctrl.article.content}}</p>
-    
+      
+      <div ng-repeat="comment in ctrl.article.comments" class="frame">
+        <p>Author: {{comment.author}}</p>
+        <p>
+          <strong>{{comment.title}}</strong>
+        </p>
+        <p>{{comment.message}}</p>
+      </div>
+      
+      <form-comment article-id=ctrl.article.id>
+     </form-comment>
+      
     </div>
   </div>
   

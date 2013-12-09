@@ -11,7 +11,7 @@ part of dart_blog;
 )
 class FormArticleComponent {
   Article articleRow;
-  Article _article = new Article(0, '','','');
+  Article _article = new Article(0, '','','', new List());
   
   Http _http;
   
@@ -40,8 +40,6 @@ class FormArticleComponent {
     _queryService.createArticle(articleRow.toJsonString())
       .then((Article articleResult) {
         _article = articleResult;
-
-        print(_article.id);
         router.go("articles.show", {"articleId": _article.id});
       });
   }

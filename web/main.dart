@@ -9,10 +9,16 @@ import 'package:logging/logging.dart';
 import 'package:perf_api/perf_api.dart';
 
 part 'service/query_service.dart';
+
 part 'model/article.dart';
+part 'model/comment.dart';
+
 part 'controller/articles_controller.dart';
+
 part 'routing/dart_blog_router.dart';
+
 part 'component/article/form/form_article_component.dart';
+part 'component/comment/form/form_comment_component.dart';
 
 
 class MyAppModule extends Module {
@@ -23,9 +29,14 @@ class MyAppModule extends Module {
     type(NewArticleController);
     
     type(QueryService);
+    
     type(FormArticleComponent);
+    type(FormCommentComponent);
+    
     type(Profiler, implementedBy: Profiler); // comment out to enable profiling
+    
     type(RouteInitializer, implementedBy: DartBlogRouteInitializer);
+    
     factory(NgRoutingUsePushState,
         (_) => new NgRoutingUsePushState.value(false));
   }

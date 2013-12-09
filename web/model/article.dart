@@ -5,8 +5,9 @@ class Article {
   String author;
   String title;
   String content;
-
-  Article(this.id, this.author, this.title, this.content);
+  List comments = new List();
+  
+  Article(this.id, this.author, this.title, this.content, this.comments);
 
   String toJsonString() {
     Map data = {
@@ -20,7 +21,6 @@ class Article {
   }
 
   factory Article.fromJsonMap(Map json) {
-    return new Article(json['id'], json['author'], json['title'],
-        json['content']);
+    return new Article(json['id'], json['author'], json['title'], json['content'], json['comments']);
   }
 }

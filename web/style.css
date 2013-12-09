@@ -34,3 +34,11 @@ body {
 body h1 {
   text-align: center;
 }
+
+.frame {
+  border: 1px solid;
+  width: 50%;
+  margin-left: 25px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
