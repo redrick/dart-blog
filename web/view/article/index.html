@@ -5,13 +5,14 @@
     {{ctrl.message}}
   </div>   
   <div ng-if="ctrl.articlesLoaded">
-      
+<!---     
    <div class="pagination">
       <a class="previous_page" rel="previous" href="#/index/2">← Previous</span> 
       <a rel="next" href="#/index/1">1</a> 
       <a rel="next" href="#/index/2">2</a> 
       <a class="next_page" rel="next" href="#/index/2">Next →</a>
    </div>
+--->
       
     <div id="article-list">
       <div ng-repeat="article in ctrl.allArticles">
@@ -26,13 +27,14 @@
         <p>{{article.content}}</p>
       </div>
     </div>
-    
+<!---    
     <div class="pagination">
       <a class="previous_page" rel="previous" href="#/index/2">← Previous</span> 
       <a rel="next" href="#/index/1">1</a> 
       <a rel="next" href="#/index/2">2</a> 
       <a class="next_page" rel="next" href="#/index/2">Next →</a>
     </div>
+--->
       
   </div>
   

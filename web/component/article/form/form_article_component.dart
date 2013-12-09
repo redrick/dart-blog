@@ -20,29 +20,29 @@ class FormArticleComponent {
   
   int _articleId;
 
+  Router router;
+
   get article {
     return articleRow;
   }
   
-  FormArticleComponent(Http this._http, QueryService this._queryService, RouteProvider routeProvider) {}
+  FormArticleComponent(Http this._http, QueryService this._queryService, RouteProvider routeProvider, this.router) {}
   
   update(){
-    print('upravujem');
-    
     _queryService.updateArticle(articleRow.id, articleRow.toJsonString())
       .then((Article articleResult) {
         _article = articleResult;
-      });
-    
+        router.go("articles.show", {"articleId": _article.id});
+      }); 
   }
-  
 
   create(){
-    print('vytvaram');
-    
     _queryService.createArticle(articleRow.toJsonString())
       .then((Article articleResult) {
         _article = articleResult;
+
+        print(_article.id);
+        router.go("articles.show", {"articleId": _article.id});
       });
   }
 

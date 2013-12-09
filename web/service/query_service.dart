@@ -2,9 +2,9 @@ part of dart_blog;
 
 class QueryService {
   String _articlesUrl = 'http://test.antasandrej.net/articles.json';
-  String _articlesUpdateUrl = 'http://test.antasandrej.net/articles/';
+  String _articleUrl = 'http://test.antasandrej.net/articles/';
   
-  Article _articleResult;
+  Article _articleResult = new Article(0, '', '', '');
   
   int _pageNumber = 1;
 
@@ -30,17 +30,17 @@ class QueryService {
   }
 
   Future<Article> getArticleById(int id) {
-    if (_articlesCache == null) {
-      return _loaded.then((_) {
-        return _articlesCache[id];
-      });
-    }
-    return new Future.value(_articlesCache[id]);
+      return _http.get(_articleUrl+id.toString()+".json")
+        .then((HttpResponse response) {
+           Map articleMap = response.data;
+           _articleResult = new Article.fromJsonMap(articleMap);
+           return _articleResult;
+        });
+//    return new Future.value(_articleResult);
   }
 
   Future<Map<String, Article>> getAllArticles(int pageNumber) {
     _pageNumber = pageNumber;
-    if (_articlesCache == null) {
       return _http.get(_articlesUrl+'?page='+_pageNumber.toString())
           .then((HttpResponse response) {
             _articlesCache = new Map();
@@ -50,23 +50,21 @@ class QueryService {
             }
             return _articlesCache;
           });
-    }
-    return new Future.value(_articlesCache);
+//    return new Future.value(_articlesCache);
   }
   
   Future<Article> createArticle(String data) {
-    _http.post(_articlesUrl, data)
+    return _http.post(_articlesUrl, data)
       .then((HttpResponse response) {
         Map articleMap = response.data;
         _articleResult = new Article.fromJsonMap(articleMap);
         return _articleResult;
       });
-    return new Future.value(_articleResult);
+//    return new Future.value(_articleResult);
   }
   
-
   Future<Article> updateArticle(int id, String data) {
-    if (_http.put(_articlesUpdateUrl+id.toString()+".json", data) == null) {
+    if (_http.put(_articleUrl+id.toString()+".json", data) == null) {
       return this.getArticleById(id);
     }
     return new Future.value(this.getArticleById(id));
