@@ -11,7 +11,6 @@ class Article {
   String toJsonString() {
     Map data = {
                 "article": {
-                  "id" : id,
                   "author" : author,
                   "title" : title,
                   "content" : content

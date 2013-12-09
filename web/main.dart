@@ -23,7 +23,6 @@ class MyAppModule extends Module {
     type(NewArticleController);
     
     type(QueryService);
-    type(CreateService);
     type(FormArticleComponent);
     type(Profiler, implementedBy: Profiler); // comment out to enable profiling
     type(RouteInitializer, implementedBy: DartBlogRouteInitializer);

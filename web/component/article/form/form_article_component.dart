@@ -11,14 +11,39 @@ part of dart_blog;
 )
 class FormArticleComponent {
   Article articleRow;
+  Article _article = new Article(0, '','','');
+  
+  Http _http;
+  
+  QueryService _queryService;
+  QueryService get queryService => _queryService;
+  
+  int _articleId;
 
   get article {
     return articleRow;
   }
-
-  create(){
-    print('safsfas');
+  
+  FormArticleComponent(Http this._http, QueryService this._queryService, RouteProvider routeProvider) {}
+  
+  update(){
+    print('upravujem');
+    
+    _queryService.updateArticle(articleRow.id, articleRow.toJsonString())
+      .then((Article articleResult) {
+        _article = articleResult;
+      });
+    
   }
   
-  FormArticleComponent(RouteProvider routeProvider) {}
+
+  create(){
+    print('vytvaram');
+    
+    _queryService.createArticle(articleRow.toJsonString())
+      .then((Article articleResult) {
+        _article = articleResult;
+      });
+  }
+
 }

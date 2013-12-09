@@ -9,10 +9,15 @@ class DartBlogRouteInitializer implements RouteInitializer {
         defaultRoute: true,
         enter: (_) =>
             router.go('index', {}, replace:true))
-            
+      
       ..addRoute(
         name: 'index',
         path: '/index',
+        enter: view('view/article/index.html'))
+            
+      ..addRoute(
+        name: 'index_with_page',
+        path: '/index/:pageNumber',
         enter: view('view/article/index.html'))
       
       ..addRoute(

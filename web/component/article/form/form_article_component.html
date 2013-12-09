@@ -2,6 +2,12 @@
   Name:    <input type="text" ng-model="ctrl.article.title"><br/>
   Author:  <input type="text" ng-model="ctrl.article.author"><br/>
   Content: <textarea ng-model="ctrl.article.content" style="width:500px;height:100px;"></textarea><br/>
-  <a href="#/articles/{{ctrl.article.id}}/show">Back</a>
-  <input class="btn-primary" type="submit" ng-click="ctrl.create()" value="Save">
+  <div ng-if="ctrl.article.id > 0">
+    <a href="#/articles/{{ctrl.article.id}}/show">Back</a>
+    <input class="btn-primary" type="submit" ng-click="ctrl.update()" value="Save">
+  </div>
+  <div ng-if="ctrl.article.id == 0">
+    <a href="#/index">Back</a>
+    <input class="btn-primary" type="submit" ng-click="ctrl.create()" value="Save">
+  </div>
 </form>

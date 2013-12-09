@@ -15,17 +15,24 @@ class IndexArticleController {
 
   String message = LOADING_MESSAGE;
   bool articlesLoaded = false;
+  int pageNumber = 1;
 
   Map<String, Article> _articleMap = {};
   get articleMap => _articleMap;
   get allArticles => _articleMap.values.toList();
 
-  IndexArticleController(Http this._http, QueryService this._queryService) {
-    _loadData();
+  IndexArticleController(Http this._http, QueryService this._queryService, RouteProvider routeProvider) {
+    if (routeProvider.parameters['pageNumber'] != null) {
+      pageNumber = int.parse(routeProvider.parameters['pageNumber']);
+    } else {
+      pageNumber = 1;
+    }
+    _loadData(pageNumber);
   }
 
-  void _loadData() {    
-    _queryService.getAllArticles()
+  void _loadData(int pageNumber) {   
+    
+    _queryService.getAllArticles(pageNumber)
       .then((Map<String, Article> allArticles) {
         _articleMap = allArticles;
         articlesLoaded = true;
@@ -123,5 +130,5 @@ class NewArticleController {
   NewArticleController() {
      article = new Article(0, '','','');
   }
-
+  
 }

@@ -2,10 +2,15 @@ part of dart_blog;
 
 class QueryService {
   String _articlesUrl = 'http://test.antasandrej.net/articles.json';
+  String _articlesUpdateUrl = 'http://test.antasandrej.net/articles/';
+  
+  Article _articleResult;
+  
+  int _pageNumber = 1;
 
   Future _loaded;
 
-  Map<String, Article> _articlesCache;
+  Map<int, Article> _articlesCache;
 
   Http _http;
 
@@ -14,7 +19,7 @@ class QueryService {
   }
 
   Future _loadArticles() {
-    return _http.get(_articlesUrl)
+    return _http.get(_articlesUrl+'?page='+_pageNumber.toString())
       .then((HttpResponse response) {
         _articlesCache = new Map();
         for (Map article in response.data) {
@@ -33,38 +38,37 @@ class QueryService {
     return new Future.value(_articlesCache[id]);
   }
 
-  Future<Map<String, Article>> getAllArticles() {
+  Future<Map<String, Article>> getAllArticles(int pageNumber) {
+    _pageNumber = pageNumber;
     if (_articlesCache == null) {
-      return _loaded.then((_) {
-        return _articlesCache;
-      });
+      return _http.get(_articlesUrl+'?page='+_pageNumber.toString())
+          .then((HttpResponse response) {
+            _articlesCache = new Map();
+            for (Map article in response.data) {
+              Article a = new Article.fromJsonMap(article);
+              _articlesCache[a.id] = a;
+            }
+            return _articlesCache;
+          });
     }
     return new Future.value(_articlesCache);
   }
-}
-
-class CreateService {
-  String _articlesUpdateUrl = 'http://test.antasandrej.net/articles.json';
-  Article article;
-
-  Future _updated;
-
-  Http _http;
-
-  CreateService(Http this._http) {
-    article = _article.toJsonString();
-    _updated = Future.wait([_updateArticle()]);
-  }
-
-  Future _updateArticle() {
-    return _http.post(_articlesUpdateUrl, data)
+  
+  Future<Article> createArticle(String data) {
+    _http.post(_articlesUrl, data)
       .then((HttpResponse response) {
-        for (Map article in response.data) {
-          print("Article: "+article);
-//          Article a = new Article.fromJsonMap(article);
-//          _articlesCache[a.id] = a;
-        }
+        Map articleMap = response.data;
+        _articleResult = new Article.fromJsonMap(articleMap);
+        return _articleResult;
       });
+    return new Future.value(_articleResult);
   }
+  
 
+  Future<Article> updateArticle(int id, String data) {
+    if (_http.put(_articlesUpdateUrl+id.toString()+".json", data) == null) {
+      return this.getArticleById(id);
+    }
+    return new Future.value(this.getArticleById(id));
+  }
 }
